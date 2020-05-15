@@ -1,4 +1,4 @@
 class TopicSkill < ApplicationRecord
-    belongs_to: topic
-    belongs_to: skill
+    belongs_to :topic
+    belongs_to :skill
 end

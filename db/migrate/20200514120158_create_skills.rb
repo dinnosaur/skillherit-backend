@@ -9,7 +9,7 @@ class CreateSkills < ActiveRecord::Migration[6.0]
       t.string :achievements
       t.integer :duration
       t.string :advice
-      t.integer :difficulty
+      t.string :difficulty
 
 
       t.timestamps

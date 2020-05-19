@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_122657) do
   create_table "links", force: :cascade do |t|
     t.integer "skill_id"
     t.string "description"
+    t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -38,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_122657) do
     t.string "achievements"
     t.integer "duration"
     t.string "advice"
-    t.integer "difficulty"
+    t.string "difficulty"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

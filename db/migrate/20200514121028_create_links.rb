@@ -3,6 +3,7 @@ class CreateLinks < ActiveRecord::Migration[6.0]
     create_table :links do |t|
       t.integer :skill_id
       t.string :description
+      t.string :url
 
       t.timestamps
     end

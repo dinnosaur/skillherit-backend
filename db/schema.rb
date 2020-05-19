@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_122657) do
     t.integer "user_id"
     t.boolean "short_term"
     t.string "title"
+    t.string "description"
     t.string "methodology"
     t.string "achievements"
     t.integer "duration"

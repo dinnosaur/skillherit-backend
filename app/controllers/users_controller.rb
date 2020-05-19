@@ -26,9 +26,9 @@ class UsersController < ApplicationController
     end
 
     def validate 
+        user = get_user
         if get_user 
-            avatar = get_user.avatar.attached? ? url_for(get_user.avatar) : nil
-            render json: {username: get_user.username, token: generate_token(id: get_user.id), id: get_user.id, bio: get_user.bio, dob: get_user.dob, email:get_user.email, avatar: avatar}
+            render json: { username: user.username, token: generate_token(id: user.id),motto: user.motto, id:user.id }
         else 
             render json: {error: "go away"}
         end

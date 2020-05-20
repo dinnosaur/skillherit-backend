@@ -3,7 +3,7 @@ class SkillsController < ApplicationController
    
      def index
         skills = Skill.all
-        render json: skills
+        render json: skills, include: [:topics,:links ]
     end
    
 

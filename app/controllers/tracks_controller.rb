@@ -2,7 +2,7 @@ class TracksController < ApplicationController
 
     def index 
         tracks = Track.all
-        render json: tracks.to_json(include: {skill:{only: [:id,:title]}})
+         render json: tracks.to_json(include: {skill:{only: [:id,:title]}})
     end 
      
     def create 
@@ -33,10 +33,23 @@ class TracksController < ApplicationController
         track = Track.find_by(user_id: user.id, completed:false )
         
         if track 
-           render json:track , include: [:skill]
+           render json:track.to_json(include: {skill:{only: [:id,:title]}})
         else 
            render json: {error: "track not found"} , status:400 
         end
+    end 
+
+    def user_tracks
+        user = get_user 
+        tracks = Track.where(user_id: user.id, completed:true ).all
+
+        if tracks
+            render json: tracks.to_json(include: {skill:{only: [:id,:title]},sessions: { include: [:notes,:urls]}})
+        else
+            render json: {error: "Tracks not found"} , status:400 
+        end 
+
+
     end 
 
 

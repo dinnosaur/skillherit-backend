@@ -5,24 +5,34 @@ class SessionsController < ApplicationController
         render json: sessions
     end 
 
+    def show
+        user = get_user
+        session = Session.find_by(id: params[:id])
+    
+        if session && user 
+            render json: session.to_json(include: {track:{include: [:skill]},notes:{except:[:updated_at]},urls:{except:[:updated_at]}})
+                 
+        else
+            render json: {error: "session not found"}
+        end
+    end 
+
+
     def create 
-        
-        track = Track.find_by(findTrackParams )
+        track = Track.find_by(id: findTrackParams[:track_id] )
         newTime = track.time + updateTrackParams[:time]
         track.update(time: newTime)
         session = Session.create(createSessionParams)
         note = Note.new(session_id: session.id)
         note.update(createNotesParams)
         Url.createLinks(params[:links],session.id )
-        
 
         if session.save
-            render json: {created_at: session.created_at}
+            render json: track
         else 
             render json: {error: "Could not create"}
         end
     end 
-
 
     private 
     
@@ -31,7 +41,7 @@ class SessionsController < ApplicationController
     end
 
     def findTrackParams
-        params.permit(:track_id)
+        params.require(:session).permit(:track_id)
     end
 
     def createNotesParams
@@ -41,5 +51,6 @@ class SessionsController < ApplicationController
     def updateTrackParams 
         params.permit(:time)
     end 
+
 
 end

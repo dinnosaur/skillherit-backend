@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   #custom track routes 
   get "tracks/user-track", to: "tracks#user_track"
+  get "tracks/user-tracks", to: "tracks#user_tracks"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

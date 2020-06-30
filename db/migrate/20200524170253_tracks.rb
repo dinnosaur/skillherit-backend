@@ -4,7 +4,7 @@ class Tracks < ActiveRecord::Migration[6.0]
     t.integer :user_id
     t.integer :skill_id
     t.float :time, default: 0
-    t.integer :distraction
+    t.integer :distraction, default: 0 
     t.string :feedback
     t.boolean :completed, default: false 
 

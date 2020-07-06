@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_170253) do
     t.integer "user_id"
     t.integer "skill_id"
     t.float "time", default: 0.0
-    t.integer "distraction", default: 0
+    t.float "distraction", default: 0.0
     t.string "feedback"
     t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false

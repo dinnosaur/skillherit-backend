@@ -20,15 +20,12 @@ class SessionsController < ApplicationController
 
     def create 
         track = Track.find_by(id: findTrackParams[:track_id] )
-        if track.distraction 
-            byebug
+
         distractionTime = track.distraction + updateTrackParams[:distraction]   
-        track.update(time: distractionTime) 
-        else track.time 
-        newTime = track.time + updateTrackParams[:time]
-        track.update(time: newTime)
-        end 
-        session = Session.create(createSessionParams)
+        newTime = (track.time + updateTrackParams[:time]) - updateTrackParams[:distraction] 
+        track.update(time: newTime, distraction: distractionTime) 
+       
+        session = Session.create(createSessionParams) 
         note = Note.new(session_id: session.id)
         note.update(createNotesParams)
         Url.createLinks(params[:links],session.id )

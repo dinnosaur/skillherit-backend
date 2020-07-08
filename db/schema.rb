@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_122657) do
+ActiveRecord::Schema.define(version: 2020_05_24_170253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,21 @@ ActiveRecord::Schema.define(version: 2020_05_14_122657) do
     t.integer "skill_id"
     t.string "description"
     t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "content"
+    t.integer "session_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.integer "track_id"
+    t.date "date"
+    t.integer "distraction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -53,6 +68,24 @@ ActiveRecord::Schema.define(version: 2020_05_14_122657) do
 
   create_table "topics", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "skill_id"
+    t.float "time", default: 0.0
+    t.float "distraction", default: 0.0
+    t.string "feedback"
+    t.boolean "completed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "urls", force: :cascade do |t|
+    t.string "link"
+    t.integer "session_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

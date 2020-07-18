@@ -12,7 +12,7 @@ class TracksController < ApplicationController
         if track.save
             render json: track , include: [:skill]
         else 
-            render json: {error: "Could not create"}
+            render json: {error: "Could not create"}, status:400 
         end
     end 
 
@@ -35,7 +35,7 @@ class TracksController < ApplicationController
         if track 
            render json:track.to_json(include: {skill:{only: [:id,:title]}})
         else 
-           render json: {error: "track not found"} , status:400 
+           render json: {error: "track not found"} , status:500
         end
     end 
 
@@ -45,9 +45,8 @@ class TracksController < ApplicationController
         if tracks
             render json: tracks.to_json(include: {skill:{only: [:id,:title]},sessions: { include: [:notes,:urls]}})
         else
-            render json: {error: "Tracks not found"} , status:400 
+            render json: {error: "Tracks not found"} , status:500
         end 
-
     end 
 
     

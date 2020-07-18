@@ -30,7 +30,7 @@ class UsersController < ApplicationController
         if get_user 
             render json: { username: user.username, token: generate_token(id: user.id),motto: user.motto, id:user.id }
         else 
-            render json: {error: "go away"}
+            render json: {error: "go away"}, status:401 
         end
     end
 

@@ -42,6 +42,7 @@ class TracksController < ApplicationController
     def user_tracks
         user = get_user 
         tracks = Track.where(user_id: user.id, completed:true ).all
+        
         if tracks
             render json: tracks.to_json(include: {skill:{only: [:id,:title]},sessions: { include: [:notes,:urls]}})
         else

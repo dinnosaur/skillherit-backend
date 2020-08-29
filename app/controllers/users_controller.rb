@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        
         user = User.new(createUserParams)
         if user.save 
             render json: {username: user.username , token: generate_token(id: user.id),motto: user.motto, email: user.email,id: user.id  }
@@ -27,6 +26,7 @@ class UsersController < ApplicationController
 
     def validate 
         user = get_user
+        
         if get_user 
             render json: { username: user.username, token: generate_token(id: user.id),motto: user.motto, id:user.id }
         else 

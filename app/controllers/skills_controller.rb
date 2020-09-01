@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
 
    
-     def index
+    def index
         skills = Skill.all
         render json: skills, include: [:topics]
     end
@@ -27,12 +27,13 @@ class SkillsController < ApplicationController
         TopicSkill.create(skill_id: skill.id , topic_id: topic.id)
         Link.createLinks(params[:links],skill.id )
        
-     if  skill.save
-        render json:skill.id
-     else 
-        render json:{errors: skill.errors.full_messages}
-     end
-    
+        if  skill.save
+            render json:skill.id
+            
+        else 
+            render json:{errors: skill.errors.full_messages}
+        end
+            
     end 
 
     private 

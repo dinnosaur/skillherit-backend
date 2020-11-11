@@ -30,6 +30,7 @@ class TracksController < ApplicationController
 
     def user_track
         user = get_user 
+       
         track = Track.find_by(user_id: user.id, completed:false )
         
         if track 
@@ -41,6 +42,7 @@ class TracksController < ApplicationController
 
     def user_tracks
         user = get_user 
+    
         tracks = Track.where(user_id: user.id, completed:true ).all
         
         if tracks

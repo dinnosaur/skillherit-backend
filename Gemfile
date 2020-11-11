@@ -46,3 +46,5 @@ gem "jwt", "~> 2.2"
 gem 'fast_jsonapi'
 
 gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'figaro'

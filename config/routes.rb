@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :links
   resources :skills
   resources :users
+  resources :topics, only: [:index]
 
   #custom user routes 
   post "users/sign-in", to: "users#sign_in"

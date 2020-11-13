@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
     
     def index 
         sessions = Session.all
-        render json: sessions
+        render json: sessions.to_json
     end 
 
     def show
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
         Url.createLinks(params[:links],session.id )
 
         if session.save
-            render json: track
+            render json: track.to_json
         else 
             render json: {error: "Could not create"}
         end

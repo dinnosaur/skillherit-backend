@@ -4,13 +4,21 @@ class TracksController < ApplicationController
         tracks = Track.all
          render json: tracks.to_json(include: {skill:{only: [:id,:title]}})
     end 
+
+
+    def show 
+        track = Track.find_by(id: params[:id])
+        
+        render json: track.to_json
+    end
+   
      
     def create 
         user = get_user
         track = Track.new(user_id: user.id, skill_id: params[:id])
 
         if track.save
-            render json: track , include: [:skill]
+            render json: track.to_json , include: [:skill]
         else 
             render json: {error: "Could not create"}, status:400 
         end
@@ -19,9 +27,9 @@ class TracksController < ApplicationController
     def update 
         track = Track.find_by(id:params[:id])
         track.update(completed: true)
-
+       
         if track 
-            render json: track 
+            render json: track.to_json 
         else 
             render json: {error: "Could not update"}
         end

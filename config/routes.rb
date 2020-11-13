@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :urls
   resources :notes
   resources :sessions
-  resources :tracks, only: [:create, :index,:update]
+  resources :tracks, only: [:create, :index, :update]
   resources :links
   resources :skills
   resources :users

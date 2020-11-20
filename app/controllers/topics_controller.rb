@@ -5,10 +5,4 @@ class TopicsController < ApplicationController
         render json: tracks
     end 
 
-
-
-
-
-
-
 end

@@ -1,7 +1,9 @@
 class TracksController < ApplicationController
 
     def index 
-        tracks = Track.all
+        tracks = Track.all.order(id: :asc)
+      
+      
          render json: tracks.to_json(include: {skill:{only: [:id,:title]}})
     end 
 
@@ -51,8 +53,7 @@ class TracksController < ApplicationController
     def user_tracks
         user = get_user 
     
-        tracks = Track.where(user_id: user.id, completed:true ).all
-        tracks.order('id')
+        tracks = Track.where(user_id: user.id, completed:true ).all.order(id: :asc)
         
         if tracks
             render json: tracks.to_json(include: {skill:{only: [:id,:title]},sessions: { include: [:notes,:urls]}})
